@@ -48,7 +48,7 @@
 </p> 
 
 <p align="center">
-    📚 Grow at <a href="#learning-hub"> Yi Learning Hub </a>!
+    📚 Grow at <a href="https://github.com/01-ai/Yi?tab=readme-ov-file#learning-hub"> Yi Learning Hub </a>!
 </p> 
 
 
@@ -77,7 +77,7 @@
   - [Fine-tuning](#fine-tuning)
   - [Quantization](#quantization)
   - [Deployment](#deployment)
-  - [Learning hub](#learning-hub)
+  - [Learning Hub](#learning-hub)
 - [🟢 Why Yi?](#-why-yi)
   - [🌎 Ecosystem](#-ecosystem)
     - [💦 Upstream](#-upstream)
@@ -269,7 +269,7 @@ Yi-6B-200K	| • [🤗 Hugging Face](https://huggingface.co/01-ai/Yi-6B-200K) �
 - [Fine-tuning](#finetuning)
 - [Quantization](#quantization)
 - [Deployment](#deployment)
-- [Learning hub](#learning-hub)
+- [Learning Hub](#learning-hub)
 
 ## Quick start
 
@@ -919,13 +919,13 @@ Below are detailed minimum VRAM requirements under different batch use cases.
   <a href="#top">Back to top ⬆️ </a>  ] 
 </p>
 
-### Learning hub
+### Learning Hub
 
 <details>
 <summary> If you want to learn Yi, you can find a wealth of helpful educational resources here. ⬇️</summary> 
 <br> 
   
-Welcome to the Yi learning hub! 
+Welcome to the Yi Learning Hub! 
 
 Whether you're a seasoned developer or a newcomer, you can find a wealth of helpful educational resources to enhance your understanding and skills with Yi models, including insightful blog posts, comprehensive video tutorials, hands-on guides, and more.  
 
