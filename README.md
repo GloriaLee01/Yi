@@ -145,7 +145,7 @@
 ## News 
 
 <details>
-  <summary>🎯 <b>2023-03-16</b>: The <code>Yi-9B-200K</code> is open-sourced and available to the public.</summary>
+  <summary>🎯 <b>2024-03-16</b>: The <code>Yi-9B-200K</code> is open-sourced and available to the public.</summary>
 </details>
 
 <details open>
@@ -224,6 +224,14 @@ sequence length and can be extended to 32K during inference time.
 Yi models come in multiple sizes and cater to different use cases. You can also fine-tune Yi models to meet your specific requirements. 
 
 If you want to deploy Yi models, make sure you meet the [software and hardware requirements](#deployment).
+111
+> **Tip**
+>
+> - Base models are trained on extensive text data for predicting text, not for dialogues. 
+>
+> - Chat models, suitable for regular Q&A, can produce human-like responses.
+>
+> For more information, see [the differences between base models and chat models](https://github.com/modelscope/modelscope-classroom/blob/main/LLM-tutorial/B.%E9%AD%94%E6%90%AD%E7%A4%BE%E5%8C%BA%E5%92%8CLLM%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md#base%E6%A8%A1%E5%9E%8B%E5%92%8Cchat%E6%A8%A1%E5%9E%8B).
 
 ### Chat models
 
@@ -452,68 +460,62 @@ You can perform inference with Yi chat or base models as below.
     ```
 
 ##### Perform inference with Yi base model
+The steps are similar to [pip - Perform inference with Yi chat model](#perform-inference-with-yi-chat-model).
 
-- Yi-34B
+If you want to perform inference with [Yi base model](https://github.com/01-ai/Yi?tab=readme-ov-file#base-models), you can use [`text_generation.py`](https://github.com/01-ai/Yi/blob/main/demo/text_generation.py).
 
-  The steps are similar to [pip - Perform inference with Yi chat model](#perform-inference-with-yi-chat-model).
-
-  You can use the existing file [`text_generation.py`](https://github.com/01-ai/Yi/tree/main/demo).
-
+- Run on GPU
+  You can perform inference with [Yi base model](https://github.com/01-ai/Yi?tab=readme-ov-file#base-models), using the following command.
   ```bash
   python demo/text_generation.py  --model <your-model-path>
   ```
-
-  Then you can see an output similar to the one below. 🥳
+  The following output is from the Yi-34B model. The output may vary slightly with other models.
 
   <details>
-
   <summary>Output. ⬇️ </summary>
-
   <br>
 
   **Prompt**: Let me tell you an interesting story about cat Tom and mouse Jerry,
 
-  **Generation**: Let me tell you an interesting story about cat Tom and mouse Jerry, which happened in my childhood. My father had a big house with two cats living inside it to kill mice. One day when I was playing at home alone, I found one of the tomcats lying on his back near our kitchen door, looking very much like he wanted something from us but couldn’t get up because there were too many people around him! He kept trying for several minutes before finally giving up...
+  **Generation**: Let me tell you an interesting story about cat Tom and mouse Jerry," he said. "I'm sure that they are very familiar to every one of us because we all have watched them in their animated cartoon films since childhood!
+  Tom is a white-and-black striped housecat who lives with his owner Mister Jasper Jones; while little brown furry rodent (mouse) named 'Jerry' was forced into hiding by the former due its constant attempts at escaping captivity through various means such as digging holes under floors or climbing up walls etcetera which often resulted either injury/death for himself if caught red handedly trying these things out again after being chased away earlier once already having done so successfully before now only managing just barely enough time left over between attacks until finally reaching safety outside where nobody else could possibly find him anymore thanks entirely on account how much more clever than usual animals usually tend get when faced against humans instead though sometimes even then too it seems like there isn’t anything stopping some people from going ahead anyway regardless whether rightfully deserved punishment might follow suit later down line somewhere along way eventually someday soon maybe sooner rather than further distant future past tense verbiage aside altogether completely ignoring whatever consequences may arise should any occur whatsoever no matter what happens next during course events unfolding presently occurring simultaneously throughout universe entire existence thereof...
 
-  </details>
+</details>
 
-- Yi-9B
+- Run on CPU
+  You can perform inference with `Yi-6B` and `Yi-9B`, using the following command. 
   
-  Input
+>**Note**
+>
+>CPU is not suitable for larger models such as Yi-34B, Yi-34B-200K, Yi-9B-200K, and Yi-6B-200K, given the constraints of CPU inference speed.
 
   ```bash
-  from transformers import AutoModelForCausalLM, AutoTokenizer
-
-  MODEL_DIR = "01-ai/Yi-9B"
-  model = AutoModelForCausalLM.from_pretrained(MODEL_DIR, torch_dtype="auto")
-  tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR, use_fast=False)
-
-  input_text = "# write the quick sort algorithm"
-  inputs = tokenizer(input_text, return_tensors="pt").to(model.device)
-  outputs = model.generate(**inputs, max_length=256)
-  print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+  python demo/text_generation.py --model <your-model-path> --prompt "# write the quick sort algorithm" --cpu
   ```
+  The following output is from the Yi-9B model. The output may vary slightly with other models.
+  <details>
 
-  Output
+  <summary>Output. ⬇️ </summary>
 
-  ```bash
+  ```
   # write the quick sort algorithm
   def quick_sort(arr):
-      if len(arr) <= 1:
-          return arr
-      pivot = arr[len(arr) // 2]
-      left = [x for x in arr if x < pivot]
-      middle = [x for x in arr if x == pivot]
-      right = [x for x in arr if x > pivot]
-      return quick_sort(left) + middle + quick_sort(right)
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quick_sort(left) + middle + quick_sort(right)
 
   # test the quick sort algorithm
   print(quick_sort([3, 6, 8, 10, 1, 2, 1]))
-  ```
+  ``` 
+  </details>
 
-    <p align="right"> [
-    <a href="#top">Back to top ⬆️ </a>  ] 
-  </p>
+<p align="right"> [
+  <a href="#top">Back to top ⬆️ </a>  ] 
+</p>
 
 ### Quick start - Docker 
 <details>
